@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  surrealdb:
+    image: surrealdb/surrealdb:v2.0.2
+    ports:
+      - "8000:8000"
+    command: start --auth --user root --pass root --bind 0.0.0.0:8000 memory
+    volumes:
+      - surrealdb_data:/data
+    profiles:
+      - db_only
+      - multi
+
+  app:
+    build: .
+    ports:
+      - "8502:8502"
+    depends_on:
+      - surrealdb
+    environment:
+      - SURREAL_ADDRESS=surrealdb
+      - SURREAL_PORT=8000
+      - SURREAL_USER=root
+      - SURREAL_PASS=root
+      - SURREAL_NAMESPACE=open_notebook
+      - SURREAL_DATABASE=open_notebook
+    env_file:
+      - docker.env
+    volumes:
+      - ./data:/app/data
+    profiles:
+      - multi
+
+volumes:
+  surrealdb_data:

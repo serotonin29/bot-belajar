@@ -1,0 +1,96 @@
+[project]
+name = "open-notebook"
+version = "0.2.2"
+description = "An open source, privacy-focused alternative to Google's Notebook LM"
+authors = [
+    {name = "Luis Novo", email = "lfnovo@gmail.com"},
+]
+dependencies = [
+    "streamlit>=1.39.0",
+    "python-dotenv>=1.0.1",
+    "loguru>=0.7.2",
+    "pydantic>=2.5.0",
+    "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-text-splitters>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langgraph>=0.2.0",
+    "esperanto>=0.1.0",
+    "content-core>=0.1.0",
+    "podcastfy>=0.2.0",
+    "docling>=2.0.0",
+    "sblpy>=0.1.0",
+    "surrealdb>=0.3.0",
+    "humanize>=4.9.0",
+    "requests>=2.31.0",
+    "tomli>=2.0.1",
+    "packaging>=23.0",
+    "python-magic>=0.4.27",
+    "ffmpeg-python>=0.2.0",
+    "nest-asyncio>=1.5.8",
+    "streamlit-tags>=1.2.8",
+    "pydub>=0.25.1",
+    "PyYAML>=6.0",
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/lfnovo/open-notebook"
+Repository = "https://github.com/lfnovo/open-notebook"
+Documentation = "https://www.open-notebook.ai"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "mypy>=1.5.0",
+    "ruff>=0.1.0",
+    "black>=23.0.0",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
